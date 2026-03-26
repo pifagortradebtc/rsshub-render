@@ -1,0 +1,15 @@
+# Blueprint Render: после пуша в GitHub — Deploy Blueprint или подключите репо как Web Service (Docker).
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: rsshub
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    region: frankfurt
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
