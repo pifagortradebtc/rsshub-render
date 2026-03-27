@@ -29,3 +29,9 @@ TELEGRAM_RSS_URL=https://<имя-сервиса>.onrender.com/telegram/channel/p
 Сейчас в `Dockerfile` используется тег `latest`. Это удобно, но поведение может меняться при каждом новом деплое.
 
 Для максимально стабильной работы лучше фиксировать конкретную версию/дижест образа RSSHub (например `diygod/rsshub:<tag>` или `diygod/rsshub@sha256:<digest>`), а обновлять вручную после проверки.
+
+## Минимальный production-checklist
+
+1. Используйте `.dockerignore`, чтобы `.env` и служебные файлы не попадали в Docker build context.
+2. Проверьте `healthCheckPath` в Render и после деплоя протестируйте целевой route `/telegram/channel/<username>`.
+3. При инцидентах сначала сверяйте доступность route в браузере, затем перезапускайте сервис в Render.
